@@ -16,11 +16,25 @@ const Header = styled.header`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 10px;
+    padding: 10px 0;
     font-weight: 600;
-    height: 10vh;
 
-    button {
-        align-self: flex-end;
+    div {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        width: 100%
+    }
+    button:nth-child(1) {
+        order: 2;
+        grid-column: 2 / 3;
+        justify-self: flex-end;
+    }
+    button:nth-child(2) {
+        order: 1;
+        grid-column: 1 / 2;
+        justify-self: flex-start;
     }
 `;
 
@@ -85,7 +99,9 @@ function Coins({ toggleDark, isDark }:ICoinProps) {
                 <title>코인</title>
             </Helmet>
             <Header>
-                <BtnTheme onClick={toggleDark} isDark={isDark}></BtnTheme>
+                <div>
+                    <BtnTheme onClick={toggleDark} isDark={isDark}></BtnTheme>
+                </div>
                 <Title>코인</Title>
             </Header>
             { isLoading ? (

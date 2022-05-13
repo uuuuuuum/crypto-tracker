@@ -15,27 +15,34 @@ const Container = styled.div`
     max-width: 480px;
     margin: 0 auto;
 `;
-const Header = styled.header<{isDark:boolean}>`
+
+const Header = styled.header`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     padding: 10px 0;
     font-weight: 600;
 
     div {
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         align-items: center;
         width: 100%
     }
-
     button:nth-child(1) {
         order: 2;
+        grid-column: 2 / 3;
         justify-self: flex-end;
     }
+    button:nth-child(2) {
+        order: 1;
+        grid-column: 1 / 2;
+        justify-self: flex-start;
+    }
 `;
+
 const BtnGoBack = styled.button<{ isDark:boolean }>`
     display: flex;
     align-items: center;
@@ -234,7 +241,7 @@ function Coin({ toggleDark, isDark }:ICoinProps) {
             <Helmet>
                 <title>{state?.name ? state?.name : loading ? "Loading..." : infoData?.name }</title>
             </Helmet>
-            <Header isDark={isDark}>
+            <Header>
                 <div>
                     <BtnTheme onClick={toggleDark} isDark={isDark} />
                     <BtnGoBack onClick={goBack} isDark={isDark}>
